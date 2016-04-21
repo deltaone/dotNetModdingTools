@@ -3,7 +3,7 @@ dotNetModdingTools is a universal platform for hooking managed function calls, y
 
 # Description
 Installed hooks allow overriding hooked function's return values, essentially granting complete control over managed code execution in a targeted game/application.
-Based on https://github.com/HearthSim/UnityHook
+Based on https://github.com/HearthSim/UnityHook ...
 
 # Features
  * Easily distribute your mods, in simple case - one .cs source file
@@ -14,15 +14,11 @@ Based on https://github.com/HearthSim/UnityHook
  * Curently for example modded StarDrive2, look into code ... 
 
 # Requirements
- * Microsoft.NET Framework v3.5
- * Microsoft.NET Framework v4.0 
+ * Microsoft.NET Framework v3.5 (for references)
+ * Microsoft.NET Framework v4.0 (for compiler)
  
-# Setup
-
-# How to use
-
 # Tips
- * You can use this bat file for update mod and run game, place this into ./core folder (don't forget to fix pathes):
+ * You can use this bat file for update mod and run game, place this into ./core folder (don't forget to fix paths):
 ``` 
 @echo off
 set exe=C:\GAMES\StarDrive 2\SD2.exe
@@ -38,7 +34,6 @@ cd ..
 timeout /t 5 
 ```
  * When you have more than one mod, please disable non active mods projects in Visual Studio. Look here http://stackoverflow.com/questions/734573/preventing-visual-studio-from-building-all-projects-when-debugging-one ...
-
 
 # Technical notes
 ```
