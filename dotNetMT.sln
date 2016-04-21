@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.injector", "core\src\_mod.injector\_mod.injector.csproj", "{33A0B54A-F06A-4C79-98F7-D87AEDFD5C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.install", "core\src\_mod.install\_mod.install.csproj", "{33A0B54A-F06A-4C79-98F7-D87AEDFD5C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.uninstall", "core\src\_mod.uninstall\_mod.uninstall.csproj", "{33A0B54A-F06A-4C79-98F7-D87AEDFD5C4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.core", "core\src\_mod.core\_mod.core.csproj", "{3182CF16-EAFC-45FA-B4FB-274D05EB027E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.modules (StarDrive2)", "mod-StarDrive2\_mods\_mod.modules (StarDrive2).csproj", "{2182CF16-EAFC-45FA-B4FB-274D05EB027E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3182CF16-EAFC-45FA-B4FB-274D05EB027E} = {3182CF16-EAFC-45FA-B4FB-274D05EB027E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3182CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3182CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3182CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3182CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2182CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2182CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2182CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2182CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.TabsToSpaces = False
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.IndentSwitchBody = True
+		$2.IndentBlocksInsideExpressions = True
+		$2.AnonymousMethodBraceStyle = NextLine
+		$2.PropertyBraceStyle = NextLine
+		$2.PropertyGetBraceStyle = NextLine
+		$2.PropertySetBraceStyle = NextLine
+		$2.EventBraceStyle = NextLine
+		$2.EventAddBraceStyle = NextLine
+		$2.EventRemoveBraceStyle = NextLine
+		$2.StatementBraceStyle = NextLine
+		$2.ElseNewLinePlacement = NewLine
+		$2.CatchNewLinePlacement = NewLine
+		$2.FinallyNewLinePlacement = NewLine
+		$2.WhileNewLinePlacement = DoNotCare
+		$2.ArrayInitializerWrapping = DoNotChange
+		$2.ArrayInitializerBraceStyle = NextLine
+		$2.BeforeMethodDeclarationParentheses = False
+		$2.BeforeMethodCallParentheses = False
+		$2.BeforeConstructorDeclarationParentheses = False
+		$2.NewLineBeforeConstructorInitializerColon = NewLine
+		$2.NewLineAfterConstructorInitializerColon = SameLine
+		$2.BeforeDelegateDeclarationParentheses = False
+		$2.NewParentheses = False
+		$2.SpacesBeforeBrackets = False
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
