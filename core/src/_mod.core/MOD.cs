@@ -19,15 +19,11 @@ namespace dotNetMT
         public static readonly string startupFolder = Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar;
 
         public static ConfigFile Config = new ConfigFile(Path.ChangeExtension(assemblyFile, ".ini"));
+        public static LogFile Logger = new LogFile(Path.ChangeExtension(assemblyFile, ".log"), true);
 
         static MOD()
         {
-            var logName = Path.ChangeExtension(assemblyFile, ".log");
-            File.Delete(logName);
-            Logger.SetLogPath(logName);
-            MOD.Log("Log started: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
-
-            AppDomain.CurrentDomain.ProcessExit += ClassDestructor;
+            AppDomain.CurrentDomain.ProcessExit += ClassDestructor; // DomainUnload
         }
 
         static void ClassDestructor(object sender, EventArgs e)

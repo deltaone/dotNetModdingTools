@@ -5,18 +5,15 @@ using System.IO;
 
 namespace dotNetMT
 {
-    public static class Logger
+    public class LogFile
     {
-        private static string _logPath = "./debug.log"; // log file path
-        private static int _maxLogAge = 5; // Max Age in seconds
-        private static int _queueSize = 1; // Max Queue Size
+        private string _logPath = "./debug.log"; // log file path
+        private int _maxLogAge = 5; // Max Age in seconds
+        private int _queueSize = 1; // Max Queue Size
 
-        private static bool _logOnlyTime = true;
-        private static Queue<LogEntry> _logQueue = new Queue<LogEntry>();
-        private static DateTime _lastFlushed = DateTime.Now;
-
-        //private static readonly Destructor Finalise = new Destructor();
-        //private sealed class Destructor { ~Destructor() { FlushLog(); }}
+        private bool _logOnlyTime = true;
+        private Queue<LogEntry> _logQueue = new Queue<LogEntry>();
+        private DateTime _lastFlushed = DateTime.Now;
 
         public class LogEntry
         {
@@ -32,47 +29,61 @@ namespace dotNetMT
             }
         }
 
-        static Logger() 
+        //private static readonly Destructor Finalise = new Destructor();
+        //private sealed class Destructor { ~Destructor() { if (_logQueue.Count > 0) FlushLog(); }}
+
+        //static LogFile() { AppDomain.CurrentDomain.ProcessExit += ClassDestructor; // DomainUnload }
+        //static void ClassDestructor(object sender, EventArgs e) { if (_logQueue.Count > 0) FlushLog(); }
+
+        public LogFile()
         {
-            AppDomain.CurrentDomain.ProcessExit += ClassDestructor; // DomainUnload
-        }
-        
-        static void ClassDestructor(object sender, EventArgs e) 
-        {
-            if(_logQueue.Count > 0) FlushLog(); 
+            Write("Log started: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
         }
 
-        public static void SetLogPath(string path) 
+        public LogFile(string path, bool overwrite = true)
+        {
+            SetLogPath(path);
+            if(overwrite) File.Delete(path);
+            Write("Log started: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+        }
+
+        ~LogFile()
+        {            
+            Write("Log closed: " + DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+            FlushLog();
+        }
+
+        public void SetLogPath(string path) 
         { 
             _logPath = path; 
         }
 
-        public static string GetLogPath() 
+        public string GetLogPath() 
         { 
             return (_logPath); 
         }
 
-        public static void SetLogMaxAge(int age)
+        public void SetLogMaxAge(int age)
         {
             _maxLogAge = age;
         }
 
-        public static int GetLogMaxAge()
+        public int GetLogMaxAge()
         {
             return (_maxLogAge);
         }
 
-        public static void SetLogMaxQueueSize(int size)
+        public void SetLogMaxQueueSize(int size)
         {
             _queueSize = size;
         }
 
-        public static int GetLogMaxQueueSize()
+        public int GetLogMaxQueueSize()
         {
             return (_queueSize);
         }
 
-        public static void Write(string message, bool flush = false)
+        public void Write(string message, bool flush = false)
         {
             lock (_logQueue) // Lock the queue while writing to prevent contention for the log file
             {
@@ -82,12 +93,12 @@ namespace dotNetMT
             }
         }
 
-        public static void Write(string message) 
+        public void Write(string message) 
         { 
             Write(message, false); 
         }
 
-        private static bool DoPeriodicFlush()
+        private bool DoPeriodicFlush()
         {
             TimeSpan logAge = DateTime.Now - _lastFlushed;
             if (logAge.TotalSeconds >= _maxLogAge)
@@ -98,7 +109,7 @@ namespace dotNetMT
             return(false);
         }
 
-        public static void FlushLog()
+        public void FlushLog()
         {
             using (FileStream fs = File.Open(_logPath, FileMode.Append, FileAccess.Write))
                 using (StreamWriter log = new StreamWriter(fs))

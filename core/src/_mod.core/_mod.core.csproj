@@ -7,7 +7,7 @@
     <ProjectGuid>{3182CF16-EAFC-45FA-B4FB-274D05EB027E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_mod.core</RootNamespace>
+    <RootNamespace>dotNetMT</RootNamespace>
     <AssemblyName>_mod.core</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -35,7 +35,7 @@
   <ItemGroup>
     <Compile Include="ConfigFile.cs" />
     <Compile Include="MOD.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="LogFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

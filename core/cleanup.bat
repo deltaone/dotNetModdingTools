@@ -1,6 +1,7 @@
 @echo off
 
 rd /s /q src\_mod.core\obj
+rd /s /q src\_mod.core-test\obj
 rd /s /q src\_mod.injector\obj
 rd /s /q src\_mod.install\obj
 rd /s /q src\_mod.uninstall\obj

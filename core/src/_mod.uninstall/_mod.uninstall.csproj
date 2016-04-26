@@ -7,7 +7,7 @@
     <ProjectGuid>{33A0B54A-F06A-4C79-98F7-D87AEDFD5C4B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_mod.uninstall</RootNamespace>
+    <RootNamespace>dotNetMT</RootNamespace>
     <AssemblyName>_mod.uninstall</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

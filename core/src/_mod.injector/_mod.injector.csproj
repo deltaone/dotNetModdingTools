@@ -7,7 +7,7 @@
     <ProjectGuid>{33A0B54A-F06A-4C79-98F7-D87AEDFD5C2B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>_mod.injector</RootNamespace>
+    <RootNamespace>dotNetMT</RootNamespace>
     <AssemblyName>_mod.injector</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
