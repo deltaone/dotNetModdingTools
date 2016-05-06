@@ -33,11 +33,60 @@ cd ..
 timeout /t 5 
 ```
  * When you have more than one mod, please disable non active mods projects in Visual Studio. Look here http://stackoverflow.com/questions/734573/preventing-visual-studio-from-building-all-projects-when-debugging-one ...
-
-# Thanks 
- * UnityHook - https://github.com/HearthSim/UnityHook
- * Infinest Terraria hacks - http://www.mpgh.net/forum/showthread.php?t=752309 
  
+# mod-StarDrive2
+ * How to install: 
+```
+	1. Copy content of folder mod-StarDrive2 to StarDrive2 game folder
+	2. Execute _mod.install.exe
+```
+ * How to:
+```	
+	F8 - Quicksave
+	F9 - Quickload
+	ALT+NumPad0 - Explore all systems
+	ALT+NumPad1 - Explore all races
+	ALT+NumPadMinus - Destroy unit
+	
+	Cybernetics trait - zero food consumption (no need chargers)
+	Edit _mods\managed\_mod.ChangedTraits.ini before install for customizing trait cost
+```	
+
+# mod-Terraria
+ * How to install: 
+```
+	1. Copy content of folder mod-Terraria to Terraria game folder
+	2. Execute _mod.install.exe
+```
+ * How to:
+```
+	F - teleport to cursor
+	ALT+NumPad1-NumPad0 - store teleport position
+	NumPad1-NumPad0 - teleport to stored position
+	Enter - open console - type command and press CTRL+Enter for executing command
+		.craft - lets you craft anything
+		.invsave - saves your current inventory to a file in the Terraria folder
+		.invload - loads the inventory from the given file and overwrites your current one
+		.flare - flashlight on mouse cursor (hold ALT for activation)
+		.torch - light on player (invisible torch)
+		.range - infinite building range (hold ALT for activation)
+		.ruler - building grid
+		.meteor - force spawn meteor
+		.bloodmoon - starting bloodmoon event
+		.invasion - starting invasion // Main.player[i].statLifeMax >= 200
+		.eclipse - starting eclipse event
+```	
+	
+# Required 3rd-party Binaries
+
+To the mod-StarDrive2\sd2_data\managed directory, you must add the following 3rd-party binaries; these can be found in the {GameName}_Data/Managed folder of the game in question.
+
+    UnityEngine.dll
+    Assembly-CSharp.dll
+    Assembly-CSharp-firstpass.dll
+
+To the mod-Terraria directory, you must add terraria.exe from your Terraria gamefolder.
+
 # Technical notes
 ```
 Hook method must be marked with attribute
@@ -108,55 +157,6 @@ Get caller info from RuntimeMethodHandle
 		
 ```
 
-# mod-StarDrive2
- * How to install: 
-```
-	1. Copy content of folder mod-StarDrive2 to StarDrive2 game folder
-	2. Execute _mod.install.exe
-```
- * How to:
-```	
-	F8 - Quicksave
-	F9 - Quickload
-	ALT+NumPad0 - Explore all systems
-	ALT+NumPad1 - Explore all races
-	ALT+NumPadMinus - Destroy unit
-	
-	Cybernetics trait - zero food consumption (no need chargers)
-	Edit _mods\managed\_mod.ChangedTraits.ini before install for customizing trait cost
-```	
-
-# mod-Terraria
- * How to install: 
-```
-	1. Copy content of folder mod-Terraria to Terraria game folder
-	2. Execute _mod.install.exe
-```
- * How to:
-```
-	F - teleport to cursor
-	ALT+NumPad1-NumPad0 - store teleport position
-	NumPad1-NumPad0 - teleport to stored position
-	Enter - open console - type command and press CTRL+Enter for executing command
-		.craft - lets you craft anything
-		.invsave - saves your current inventory to a file in the Terraria folder
-		.invload - loads the inventory from the given file and overwrites your current one
-		.flare - flashlight on mouse cursor (hold ALT for activation)
-		.torch - light on player (invisible torch)
-		.range - infinite building range (hold ALT for activation)
-		.ruler - building grid
-		.meteor - force spawn meteor
-		.bloodmoon - starting bloodmoon event
-		.invasion - starting invasion // Main.player[i].statLifeMax >= 200
-		.eclipse - starting eclipse event
-```	
-	
-# Required 3rd-party Binaries
-
-To the mod-StarDrive2\sd2_data\managed directory, you must add the following 3rd-party binaries; these can be found in the {GameName}_Data/Managed folder of the game in question.
-
-    UnityEngine.dll
-    Assembly-CSharp.dll
-    Assembly-CSharp-firstpass.dll
-
-To the mod-Terraria directory, you must add terraria.exe from your Terraria gamefolder.
+# Thanks 
+ * UnityHook - https://github.com/HearthSim/UnityHook
+ * Infinest Terraria hacks - http://www.mpgh.net/forum/showthread.php?t=752309 
