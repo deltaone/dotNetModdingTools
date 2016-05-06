@@ -107,6 +107,34 @@ Get caller info from RuntimeMethodHandle
 	var methodName = method.Name;
 		
 ```
+
+# mod-StarDrive2
+
+# mod-Terraria
+ * How to install: 
+```
+	1. Copy content of folder mod-Terraria to Terraria game folder
+	2. execute _mod.install.exe
+```
+ * How to use:
+```
+	F - teleport to cursor
+	ALT+1-0 - store teleport position
+	1-0 - teleport to stored position
+	Enter - open console - type command and press CTRL+Enter for executing command
+		.craft - lets you craft anything
+		.invsave - saves your current inventory to a file in the Terraria folder
+		.invload - loads the inventory from the given file and overwrites your current one
+		.flare - flashlight on mouse cursor (hold ALT for activation)
+		.torch - light on player (invisible torch)
+		.range - infinite building range (hold ALT for activation)
+		.ruler - building grid
+		.meteor - force spawn meteor
+		.bloodmoon - starting bloodmoon event
+		.invasion - starting invasion // Main.player[i].statLifeMax >= 200
+		.eclipse - starting eclipse event
+```	
+	
 # Required 3rd-party Binaries
 
 To the mod-StarDrive2\sd2_data\managed directory, you must add the following 3rd-party binaries; these can be found in the {GameName}_Data/Managed folder of the game in question.
