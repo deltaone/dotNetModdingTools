@@ -3,7 +3,6 @@ dotNetModdingTools is a universal platform for hooking managed function calls, y
 
 # Description
 Installed hooks allow overriding hooked function's return values, essentially granting complete control over managed code execution in a targeted game/application.
-Based on https://github.com/HearthSim/UnityHook ...
 
 # Features
  * Easily distribute your mods, in simple case - one .cs source file
@@ -36,8 +35,8 @@ timeout /t 5
  * When you have more than one mod, please disable non active mods projects in Visual Studio. Look here http://stackoverflow.com/questions/734573/preventing-visual-studio-from-building-all-projects-when-debugging-one ...
 
 # Thanks 
-UnityHook - https://github.com/HearthSim/UnityHook
-Infinest Terraria hacks - http://www.mpgh.net/forum/showthread.php?t=752309 
+ * UnityHook - https://github.com/HearthSim/UnityHook
+ * Infinest Terraria hacks - http://www.mpgh.net/forum/showthread.php?t=752309 
  
 # Technical notes
 ```
