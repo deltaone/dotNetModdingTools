@@ -16,6 +16,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.modules (StarDrive2)",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.core-test", "core\src\_mod.core-test\_mod.core-test.csproj", "{33A0B54A-F06A-3C79-98F7-D87AEDFD5C4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.modules (Terraria 1.3.0.8)", "mod-Terraria\_mods\_mod.modules (Terraria 1.3.0.8).csproj", "{2184CF16-EAFC-45FA-B4FB-274D05EB027E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{6B9B3653-A3B7-41F5-9291-813A568399D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.injector-test", "core\src\_mod.injector-test\_mod.injector-test.csproj", "{33A0B54A-F06A-3C89-98F7-D87AEDFD5C4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.modules (Template-dotNet)", "mod-Template-dotNet\_mods\_mod.modules (Template-dotNet).csproj", "{2183CF16-EAFC-45FA-B4FB-274D05EB027E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,9 +54,30 @@ Global
 		{33A0B54A-F06A-3C79-98F7-D87AEDFD5C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33A0B54A-F06A-3C79-98F7-D87AEDFD5C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33A0B54A-F06A-3C79-98F7-D87AEDFD5C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2184CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2184CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2184CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2184CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A0B54A-F06A-3C89-98F7-D87AEDFD5C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A0B54A-F06A-3C89-98F7-D87AEDFD5C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A0B54A-F06A-3C89-98F7-D87AEDFD5C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A0B54A-F06A-3C89-98F7-D87AEDFD5C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2183CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2183CF16-EAFC-45FA-B4FB-274D05EB027E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2183CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2183CF16-EAFC-45FA-B4FB-274D05EB027E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C3B} = {6B9B3653-A3B7-41F5-9291-813A568399D5}
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C4B} = {6B9B3653-A3B7-41F5-9291-813A568399D5}
+		{3182CF16-EAFC-45FA-B4FB-274D05EB027E} = {6B9B3653-A3B7-41F5-9291-813A568399D5}
+		{33A0B54A-F06A-4C79-98F7-D87AEDFD5C2B} = {6B9B3653-A3B7-41F5-9291-813A568399D5}
+		{33A0B54A-F06A-3C79-98F7-D87AEDFD5C4B} = {6B9B3653-A3B7-41F5-9291-813A568399D5}
+		{33A0B54A-F06A-3C89-98F7-D87AEDFD5C4B} = {6B9B3653-A3B7-41F5-9291-813A568399D5}
+		{2183CF16-EAFC-45FA-B4FB-274D05EB027E} = {6B9B3653-A3B7-41F5-9291-813A568399D5}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

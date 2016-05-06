@@ -82,18 +82,21 @@ namespace dotNetMT
         static void InjectHook(ModuleDefinition module, MethodDefinition method, HookEntry hook_)
         {
             var hookTypeRef = module.ImportReference(hook_.type_);
-            var hookMethodRef = module.ImportReference(hook_.method_);            
-            
+            var hookMethodRef = module.ImportReference(hook_.method_);
+
+            // method.Body.SimplifyMacros();
+
             // object[] interceptedArgs;
             // object hookResult;
             var interceptedArgs = new VariableDefinition("interceptedArgs", method.Module.TypeSystem.Object.MakeArrayType());
-            var hookResult = new VariableDefinition("hookResult", method.Module.TypeSystem.Object);
             method.Body.Variables.Add(interceptedArgs);
+            var hookResult = new VariableDefinition("hookResult", method.Module.TypeSystem.Object);            
             method.Body.Variables.Add(hookResult);
+
             var numArgs = method.Parameters.Count;
             var hook = new List<Instruction>();
 
-            // interceptedArgs = new object[numArgs];
+            // interceptedArgs = new object[numArgs];            
             hook.Add(Instruction.Create(OpCodes.Ldc_I4, numArgs));
             hook.Add(Instruction.Create(OpCodes.Newarr, method.Module.TypeSystem.Object));
             hook.Add(Instruction.Create(OpCodes.Stloc, interceptedArgs));
@@ -121,13 +124,13 @@ namespace dotNetMT
                 }
                 else if (param.ParameterType.IsValueType)
                 {
-                    // if the arg descends from ValueType, it must be boxed to be
-                    // converted to an object:
+                    // if the arg descends from ValueType, it must be boxed to be converted to an object:
                     hook.Add(Instruction.Create(OpCodes.Box, param.ParameterType));
                 }
                 hook.Add(Instruction.Create(OpCodes.Stelem_Ref));
                 i++;
             }
+
             // hookResult = HookRegistry.OnCall(rmh, thisObj, interceptedArgs);
             hook.Add(Instruction.Create(OpCodes.Ldloc, interceptedArgs));
             hook.Add(Instruction.Create(OpCodes.Call, hookMethodRef));
@@ -135,12 +138,18 @@ namespace dotNetMT
             // if (hookResult != null) {
             //     return (ReturnType)hookResult;
             // }
+
             hook.Add(Instruction.Create(OpCodes.Ldloc, hookResult));
             hook.Add(Instruction.Create(OpCodes.Ldnull));
             hook.Add(Instruction.Create(OpCodes.Ceq));
-            if(hook_.hookOnBegin) hook.Add(Instruction.Create(OpCodes.Brtrue_S, method.Body.Instructions.First()));
-            else hook.Add(Instruction.Create(OpCodes.Brtrue_S, method.Body.Instructions.Last()));
-            
+
+            if (hook_.hookOnBegin) hook.Add(Instruction.Create(OpCodes.Brtrue_S, method.Body.Instructions.First()));
+            else
+            {
+                method.Body.Instructions.Insert(method.Body.Instructions.Count - 1, Instruction.Create(OpCodes.Nop));
+                hook.Add(Instruction.Create(OpCodes.Brtrue_S, method.Body.Instructions[method.Body.Instructions.Count - 2]));
+            }
+
             if (!method.ReturnType.FullName.EndsWith("Void"))
             {
                 if (!hook_.hookOnBegin) hook.Add(Instruction.Create(OpCodes.Pop));
@@ -148,12 +157,14 @@ namespace dotNetMT
                 hook.Add(Instruction.Create(OpCodes.Castclass, method.ReturnType));
                 hook.Add(Instruction.Create(OpCodes.Unbox_Any, method.ReturnType));
             }
+
             hook.Add(Instruction.Create(OpCodes.Ret));
 
             hook.Reverse();
 
-            int adr = hook_.hookOnBegin ? 0 : method.Body.Instructions.Count - 1;
+            int adr = hook_.hookOnBegin ? 0 : method.Body.Instructions.Count - 2;
             foreach (var instruction in hook) method.Body.Instructions.Insert(adr, instruction);
+
             method.Body.OptimizeMacros();
         }
 
