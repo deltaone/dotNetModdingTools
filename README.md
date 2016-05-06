@@ -35,6 +35,10 @@ timeout /t 5
 ```
  * When you have more than one mod, please disable non active mods projects in Visual Studio. Look here http://stackoverflow.com/questions/734573/preventing-visual-studio-from-building-all-projects-when-debugging-one ...
 
+# Thanks 
+UnityHook - https://github.com/HearthSim/UnityHook
+Infinest Terraria hacks - http://www.mpgh.net/forum/showthread.php?t=752309 
+ 
 # Technical notes
 ```
 Hook method must be marked with attribute
@@ -112,3 +116,4 @@ To the mod-StarDrive2\sd2_data\managed directory, you must add the following 3rd
     Assembly-CSharp.dll
     Assembly-CSharp-firstpass.dll
 
+To the mod-Terraria directory, you must add terraria.exe from your Terraria gamefolder.
