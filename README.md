@@ -34,7 +34,7 @@ timeout /t 5
 ```
  * When you have more than one mod, please disable non active mods projects in Visual Studio. Look here http://stackoverflow.com/questions/734573/preventing-visual-studio-from-building-all-projects-when-debugging-one ...
  
-# mod-StarDrive2
+# mod-StarDrive2 (tested on StarDrive 2 v1.3)
  * How to install: 
 ```
 	1. Copy content of folder mod-StarDrive2 to StarDrive2 game folder
@@ -52,7 +52,7 @@ timeout /t 5
 	Edit _mods\managed\_mod.ChangedTraits.ini before install for customizing trait cost
 ```	
 
-# mod-Terraria
+# mod-Terraria (tested on Terraria v1.3.0.8)
  * How to install: 
 ```
 	1. Copy content of folder mod-Terraria to Terraria game folder
