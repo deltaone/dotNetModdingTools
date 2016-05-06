@@ -15,8 +15,10 @@ namespace dotNetMT
 {
     public static class COMMANDS
     {
+        private static int timeType = 2;
+
         public static void Startup()
-        {
+        {            
             CORE.CommandRegister(".craft", _craft);  // lets you craft anything
             CORE.CommandRegister(".invsave", _invsave); // saves your current inventory to a file in the Terraria folder
             CORE.CommandRegister(".invload", _invload); // loads the inventory from the given file and overwrites your current one
@@ -24,6 +26,7 @@ namespace dotNetMT
             CORE.CommandRegister(".torch", _torch); // light on player (invisible torch)
             CORE.CommandRegister(".range", _range); // infinite building range
             CORE.CommandRegister(".ruler", _ruler); // building grid
+            CORE.CommandRegister(".time", _time);  // show daytime
             CORE.CommandRegister(".meteor", _meteor); // force spawn meteor
             CORE.CommandRegister(".bloodmoon", _bloodmoon); // starting bloodmoon
             CORE.CommandRegister(".invasion", _invasion); // starting invasion // Main.player[i].statLifeMax >= 200
@@ -205,6 +208,9 @@ namespace dotNetMT
             if (CORE.CommandGetState(".ruler")) // && Main.keyState.IsKeyDown(Keys.LeftAlt))
                 Main.player[Main.myPlayer].rulerGrid = true;
 
+            if (CORE.CommandGetState(".time"))
+                Main.player[Main.myPlayer].accWatch = timeType;
+
             return (null);
         }
 
@@ -215,6 +221,14 @@ namespace dotNetMT
 
         public static void _ruler(string command, string args, bool state)
         {
+            CORE.Print("[dotNetMT] " + command + " = " + state.ToString());
+        }
+
+        public static void _time(string command, string args, bool state)
+        {
+            MOD.TryParseInt(args, out timeType);
+            if (timeType < 1 || timeType > 3) timeType = 2;
+
             CORE.Print("[dotNetMT] " + command + " = " + state.ToString());
         }
 
@@ -252,8 +266,9 @@ namespace dotNetMT
                         
             if (state)
             {
-                int invasion = 1;
+                int invasion;
                 MOD.TryParseInt(args, out invasion);
+                if (invasion < 1 || invasion > 4) invasion = 1;
                 Main.StartInvasion(invasion);
             }
             else if (Main.invasionType > 0) Main.invasionSize = 0;

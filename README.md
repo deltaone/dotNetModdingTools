@@ -71,6 +71,7 @@ timeout /t 5
 		.torch - light on player (invisible torch)
 		.range - infinite building range (hold ALT for activation)
 		.ruler - building grid
+		.time [type] - show daytime, where type can be from 1 to 3
 		.meteor - force spawn meteor
 		.bloodmoon - starting bloodmoon event
 		.invasion [num] - starting invasion 

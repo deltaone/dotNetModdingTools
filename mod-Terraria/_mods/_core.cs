@@ -20,6 +20,8 @@ namespace dotNetMT
     {
         private static int _cooldown = 0;
 
+        private static string _lastCommand = "";
+
         public delegate void CommandCallback(string command, string args, bool state);
 
         private static Dictionary<string, CommandCallback> _commands = new Dictionary<string, CommandCallback>();
@@ -105,6 +107,7 @@ namespace dotNetMT
             if (Main.hasFocus && Main.chatMode && Main.keyState.IsKeyDown(Keys.RightControl) && Main.keyState.IsKeyDown(Keys.Enter))
                 if (CommandProcess(Main.chatText))
                 {
+                    _lastCommand = Main.chatText;
                     Main.chatText = "";
                     Main.chatMode = false;
                     Main.chatRelease = false;
@@ -112,6 +115,13 @@ namespace dotNetMT
                     BeginCooldown(30);
                     return (null);
                 }
+
+            if (Main.hasFocus && Main.chatMode && Main.keyState.IsKeyDown(Keys.Up) && Main.keyState.IsKeyDown(Keys.LeftControl))
+            {
+                Main.chatText = _lastCommand;
+                BeginCooldown(30);
+                return (null);
+            }
 
             if (Main.keyState.IsKeyDown(Keys.Enter) && Main.netMode == 0 && !Main.keyState.IsKeyDown(Keys.LeftAlt) && !Main.keyState.IsKeyDown(Keys.RightAlt) && Main.hasFocus)
             {
