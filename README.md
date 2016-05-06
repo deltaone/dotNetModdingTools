@@ -8,10 +8,10 @@ Based on https://github.com/HearthSim/UnityHook ...
 # Features
  * Easily distribute your mods, in simple case - one .cs source file
  * Mods compile on user side through install utility
- * Intercept execution on begin or at end of target function
- * Allow overriding hooked function's return values
+ * Intercept execution on begin/end of target function 
+ * Allow overriding/analyse hooked function return value
  * Ease install/deinstall modifications for updating game/application
- * Curently for example modded StarDrive2, look into code ... 
+ * For example modded StarDrive2 / Terraria, look into code ... 
 
 # Requirements
  * Microsoft.NET Framework v3.5 (for references)
