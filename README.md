@@ -109,18 +109,34 @@ Get caller info from RuntimeMethodHandle
 ```
 
 # mod-StarDrive2
+ * How to install: 
+```
+	1. Copy content of folder mod-StarDrive2 to StarDrive2 game folder
+	2. Execute _mod.install.exe
+```
+ * How to:
+```	
+	F8 - Quicksave
+	F9 - Quickload
+	ALT+NumPad0 - Explore all systems
+	ALT+NumPad1 - Explore all races
+	ALT+NumPadMinus - Destroy unit
+	
+	Cybernetics trait - zero food consumption (no need chargers)
+	Edit _mods\managed\_mod.ChangedTraits.ini before install for customizing trait cost
+```	
 
 # mod-Terraria
  * How to install: 
 ```
 	1. Copy content of folder mod-Terraria to Terraria game folder
-	2. execute _mod.install.exe
+	2. Execute _mod.install.exe
 ```
- * How to use:
+ * How to:
 ```
 	F - teleport to cursor
-	ALT+1-0 - store teleport position
-	1-0 - teleport to stored position
+	ALT+NumPad1-NumPad0 - store teleport position
+	NumPad1-NumPad0 - teleport to stored position
 	Enter - open console - type command and press CTRL+Enter for executing command
 		.craft - lets you craft anything
 		.invsave - saves your current inventory to a file in the Terraria folder
