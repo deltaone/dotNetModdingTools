@@ -42,6 +42,13 @@ Hook method must be marked with attribute
 	if hookOnBegin = false - hook injected on end of function (by default hookOnBegin = true)
 	on ex. [RuntimeHook("Assembly-CSharp.dll", "Planet", "CalculatePollution")]
 
+Hook prototype
+    [RuntimeHook("Terraria.exe", "Terraria.Player", "Update", false)]
+    public static object Hook(object rv, object obj, params object[] args)
+    {
+		return(null);
+	}
+	
 	
 Return null from hook function for continue executing or return not null for immediate return from intercepted function
 	injected code on void function:
