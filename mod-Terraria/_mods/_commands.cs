@@ -7,6 +7,8 @@ using System.Globalization;
 using System.Reflection;
 
 using Terraria;
+using Terraria.GameContent.Achievements;
+
 using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
@@ -218,10 +220,12 @@ namespace dotNetMT
 
         public static void _meteor(string command, string args, bool state)
         {
-            //FieldInfo field = typeof(Terraria.Main).Assembly.GetType("Terraria.WorldGen").GetField("spawnMeteor");
-            //field.SetValue(null, true); // landed on second part of night 
+            var type = Assembly.GetEntryAssembly().GetType("Terraria.WorldGen");
 
-            MethodInfo method = typeof(Terraria.Main).Assembly.GetType("Terraria.WorldGen").GetMethod("dropMeteor");
+            FieldInfo field = type.GetField("spawnMeteor");
+            field.SetValue(null, false); // landed on second part of night 
+
+            MethodInfo method = type.GetMethod("dropMeteor");
             method.Invoke(null, new object[] { });
 
             CORE.Print("[dotNetMT] " + command + " - command done ...");
@@ -230,18 +234,47 @@ namespace dotNetMT
         public static void _bloodmoon(string command, string args, bool state)
         {
             Main.bloodMoon = state;
+            if (state)
+            {
+                AchievementsHelper.NotifyProgressionEvent(4);
+                if (Main.netMode == 0) Main.NewText(Lang.misc[8], 50, 255, 130, false);
+                else if (Main.netMode == 2) NetMessage.SendData(25, -1, -1, Lang.misc[8], 255, 50f, 255f, 130f, 0, 0, 0);
+            }
             CORE.Print("[dotNetMT] " + command + " = " + state.ToString());
         }
 
         public static void _invasion(string command, string args, bool state)
         {
-            Main.StartInvasion(2);
+            // 1 - Goblin army
+            // 2 - Frost legion
+            // 3 - Pirates
+            // 4 - Martian madness
+                        
+            if (state)
+            {
+                int invasion = 1;
+                MOD.TryParseInt(args, out invasion);
+                Main.StartInvasion(invasion);
+            }
+            else if (Main.invasionType > 0) Main.invasionSize = 0;
+
             CORE.Print("[dotNetMT] " + command + " - command done ...");
         }
 
         public static void _eclipse(string command, string args, bool state)
         {
             Main.eclipse = state;
+            if (state)
+            {
+                AchievementsHelper.NotifyProgressionEvent(2);
+                if (Main.netMode == 0) Main.NewText(Lang.misc[20], 50, 255, 130, false);
+                else if (Main.netMode == 2)
+                {
+                    NetMessage.SendData(25, -1, -1, Lang.misc[20], 255, 50f, 255f, 130f, 0, 0, 0);
+                    NetMessage.SendData(7, -1, -1, "", 0, 0f, 0f, 0f, 0, 0, 0);
+                }
+            }
+
             CORE.Print("[dotNetMT] " + command + " = " + state.ToString());
         }
     }

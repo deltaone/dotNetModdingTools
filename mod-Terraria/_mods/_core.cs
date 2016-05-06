@@ -54,6 +54,7 @@ namespace dotNetMT
             var parts = command.Split(new char[] { ' ' }, 2, StringSplitOptions.RemoveEmptyEntries);
 
             if (!_commandStates.ContainsKey(parts[0])) return (false);
+            
             _commandStates[parts[0]] = !_commandStates[parts[0]];
 
             try

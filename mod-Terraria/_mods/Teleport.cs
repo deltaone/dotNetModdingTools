@@ -19,17 +19,10 @@ namespace dotNetMT
 
         private static void _Teleport(Player player, float x, float y)
         {
-            if (Main.netMode == 1)
-            {
-                NetMessage.SendData(12, -1, -1, "", Main.myPlayer, 0f, 0f, 0f, 0);
-                NetMessage.SendData(13, -1, -1, "", Main.myPlayer, 0f, 0f, 0f, 0);
-            }
-            player.position = new Vector2(x, y);
-            if (Main.netMode == 1)
-            {
-                NetMessage.SendData(12, -1, -1, "", Main.myPlayer, 0f, 0f, 0f, 0);
-                NetMessage.SendData(13, -1, -1, "", Main.myPlayer, 0f, 0f, 0f, 0);
-            }
+            var vector = new Vector2(x, y);
+            player.Teleport(vector, 4, 0);
+            player.velocity = Vector2.Zero;
+            NetMessage.SendData(65, -1, -1, "", 0, player.whoAmI, vector.X, vector.Y, 5, 0, 0);
         }
 
         [RuntimeHook("Terraria.exe", "Terraria.Player", "Update", false)]

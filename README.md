@@ -73,7 +73,11 @@ timeout /t 5
 		.ruler - building grid
 		.meteor - force spawn meteor
 		.bloodmoon - starting bloodmoon event
-		.invasion - starting invasion // Main.player[i].statLifeMax >= 200
+		.invasion [num] - starting invasion 
+            1 - Goblin army
+            2 - Frost legion
+            3 - Pirates
+            4 - Martian madness
 		.eclipse - starting eclipse event
 ```	
 	
