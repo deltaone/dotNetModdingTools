@@ -56,6 +56,12 @@ namespace dotNetMT
             return (t);
         }
 
+        public static void Test1(ref bool message)
+        {
+            message = true;
+        }
+
+
         static void Main(string[] args)
         {
             Console.WindowWidth = 120;
@@ -63,6 +69,13 @@ namespace dotNetMT
             print(assemblyTitle + " " + version + "\n" + assemblyCopyright + "\n");
 
             Test0("Test+");
+
+            bool bReturn = false;
+            Test1(ref bReturn);
+            if (bReturn)
+            {
+                print("\nDone!\n");
+            }
 
             print("\nDone!\n");
             if (isPauseAfterExit) Console.ReadKey(true);

@@ -35,7 +35,11 @@ namespace dotNetMT
 
     class Core
     {
+#if DEBUG 
+        public static bool isPauseAfterExit = true;
+#else
         public static bool isPauseAfterExit = false;
+#endif        
         public const string assemblyTitle = ".Net Modding Tools (injector)";
         public const string assemblyDescription = "Inject user mods to assembly ...";
         public const string assemblyCopyright = "Written by de1ta0ne / @HearthSim";
@@ -102,7 +106,23 @@ namespace dotNetMT
             hook.Add(Instruction.Create(OpCodes.Stloc, interceptedArgs));
 
             // rmh = methodof(this).MethodHandle;
-            hook.Add(Instruction.Create(OpCodes.Ldtoken, method));
+            // hook.Add(Instruction.Create(OpCodes.Ldtoken, method));
+
+            if (hook_.hookOnBegin || method.ReturnType.FullName.EndsWith("Void")) hook.Add(Instruction.Create(OpCodes.Ldnull));
+            else
+            {
+                hook.Add(Instruction.Create(OpCodes.Dup));
+                if (method.ReturnType.IsByReference)
+                {   // if the arg is a reference type, it must be copied and boxed                    
+                    var refType = (ByReferenceType)method.ReturnType;
+                    hook.Add(Instruction.Create(OpCodes.Ldobj, refType.ElementType));
+                    hook.Add(Instruction.Create(OpCodes.Box, refType.ElementType));
+                }
+                else if (method.ReturnType.IsValueType)
+                {   // if the arg descends from ValueType, it must be boxed to be converted to an object:                    
+                    hook.Add(Instruction.Create(OpCodes.Box, method.ReturnType));
+                }               
+            }
 
             // thisObj = static ? null : this;
             if (!method.IsStatic) hook.Add(Instruction.Create(OpCodes.Ldarg_0));
@@ -298,7 +318,7 @@ namespace dotNetMT
                     var scriptAssembly = AssemblyDefinition.ReadAssembly(inStream);
 
                     // scriptAssembly.MainModule.AssemblyReferences.Add(new AssemblyNameReference("_mod.core", new Version(1, 0, 0, 0)));
-                    scriptAssembly.MainModule.ImportReference(typeof(System.RuntimeMethodHandle));
+                    // scriptAssembly.MainModule.ImportReference(typeof(System.RuntimeMethodHandle));
 
                     foreach (var hook in hooks) ProcessHook(scriptAssembly.MainModule, hook);
 

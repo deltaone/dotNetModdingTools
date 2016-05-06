@@ -13,7 +13,7 @@ namespace dotNetMT
         private static bool enabled = MOD.Config.Get("modules.CheatDestroyUnit", true);
 
         [RuntimeHook("Assembly-CSharp.dll", "StrategicGUI", "Update")]
-        public static object DestroyFleet(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object DestroyFleet(object rv, object obj, params object[] args)
         {
             if (!enabled) return (null);
             var this_ = (StrategicGUI)obj;
@@ -28,7 +28,7 @@ namespace dotNetMT
         }
 
         [RuntimeHook("Assembly-CSharp.dll", "GameController", "Update")]
-        public static object DestroyGroundCombatant(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object DestroyGroundCombatant(object rv, object obj, params object[] args)
         {
             if (!enabled) return (null);
             var this_ = (GameController)obj;
@@ -43,7 +43,7 @@ namespace dotNetMT
         }
 		
         [RuntimeHook("Assembly-CSharp.dll", "ArenaController", "Update")]
-        public static object DestroyArenaShip(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object DestroyArenaShip(object rv, object obj, params object[] args)
         {
             if (!enabled) return (null);
             var this_ = (ArenaController)obj;

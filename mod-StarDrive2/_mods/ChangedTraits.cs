@@ -14,7 +14,7 @@ namespace dotNetMT
         private static bool intercept = true;
         
         [RuntimeHook("Assembly-CSharp.dll", "RaceSelectionMenu", "Start")]
-        public static object Hook(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object Hook(object rv, object obj, params object[] args)
         {
             if (!enabled) return (null);
             var this_ = (RaceSelectionMenu)obj;

@@ -33,7 +33,7 @@ namespace dotNetMT
         }
 
         [RuntimeHook("Terraria.exe", "Terraria.Player", "Update", false)]
-        public static object HookPlayerUpdate(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object HookPlayerUpdate(object rv, object obj, params object[] args)
         {
             if (!enabled) return (null);
             var this_ = (Player)obj;

@@ -96,7 +96,7 @@ namespace dotNetMT
 
 
         [RuntimeHook("Terraria.exe", "Terraria.Main", "DrawFPS")]
-        public static object HookDrawFPS(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object HookDrawFPS(object rv, object obj, params object[] args)
         {
             if (_cooldown > 0) _cooldown--;
             if (IsOnCooldown()) return (null);

@@ -13,7 +13,7 @@ namespace dotNetMT
         private static bool enabled = MOD.Config.Get("modules.QuickSave", true);
 
         [RuntimeHook("Assembly-CSharp.dll", "GalaxyController", "Update")]
-        public static object Hook(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object Hook(object rv, object obj, params object[] args)
         {
             if (!enabled) return (null);
             var this_ = (GalaxyController)obj;

@@ -13,7 +13,7 @@ namespace dotNetMT
         private static bool enabled = MOD.Config.Get("modules.CybersNotEat", true);
 
         [RuntimeHook("Assembly-CSharp.dll", "Planet", "CalculateFoodConsumption")]
-        public static object Hook(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object Hook(object rv, object obj, params object[] args)
         {
             if (!enabled) return (null);
             var this_ = (Planet)obj;

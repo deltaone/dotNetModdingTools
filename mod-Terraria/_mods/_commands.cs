@@ -29,7 +29,7 @@ namespace dotNetMT
         }
 
         [RuntimeHook("Terraria.exe", "Terraria.Recipe", "FindRecipes", false)]
-        public static object HookRecipeFindRecipes(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object HookRecipeFindRecipes(object rv, object obj, params object[] args)
         {
             if (!CORE.CommandGetState(".torch")) return (null);
 
@@ -159,7 +159,7 @@ namespace dotNetMT
         }
 
         [RuntimeHook("Terraria.exe", "Terraria.Player", "Update", false)]
-        public static object HookPlayerUpdate(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object HookPlayerUpdate(object rv, object obj, params object[] args)
         {
             var this_ = (Player)obj;
             if ((int)args[0] != Main.myPlayer) return (null);
@@ -192,7 +192,7 @@ namespace dotNetMT
         }
 
         [RuntimeHook("Terraria.exe", "Terraria.Player", "ResetEffects", false)]
-        public static object HookPlayerResetEffects(RuntimeMethodHandle rmh, object obj, params object[] args)
+        public static object HookPlayerResetEffects(object rv, object obj, params object[] args)
         {
             if (CORE.CommandGetState(".range") && Main.keyState.IsKeyDown(Keys.LeftAlt))
             {
