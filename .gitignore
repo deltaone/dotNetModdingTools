@@ -54,9 +54,11 @@ ipch/
 *.vsp
 *.vspx
 
-# unredistributable binaries:
-mod-StarDrive2/sd2_data/managed/*.dll
+# unredistributable:
+.todo
+.todo-src
+refs/
+mod-StardewValley/xTile.dll
+mod-StardewValley/Stardew Valley.exe
 mod-Terraria/Terraria.exe 
-core/start-terraria.bat
-core/start-sd2.bat
-core/bin/*
+mod-StarDrive2/sd2_data/

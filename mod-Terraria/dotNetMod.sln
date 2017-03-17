@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.core", "_build\_mod.core.csproj", "{00000001-F06A-4C79-98F7-D87AEDFD5C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.setup", "_build\_mod.setup.csproj", "{00000000-F06A-4C79-98F7-D87AEDFD5C2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_mod.plugins", "_build\_mod.plugins.csproj", "{00000002-F06A-4C79-98F7-D87AEDFD5C2B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{00000001-F06A-4C79-98F7-D87AEDFD5C2B} = {00000001-F06A-4C79-98F7-D87AEDFD5C2B}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00000001-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00000001-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00000001-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00000001-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00000000-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00000000-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00000000-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00000000-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00000002-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00000002-F06A-4C79-98F7-D87AEDFD5C2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00000002-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00000002-F06A-4C79-98F7-D87AEDFD5C2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.TabsToSpaces = False
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.IndentSwitchBody = True
+		$2.IndentBlocksInsideExpressions = True
+		$2.AnonymousMethodBraceStyle = NextLine
+		$2.PropertyBraceStyle = NextLine
+		$2.PropertyGetBraceStyle = NextLine
+		$2.PropertySetBraceStyle = NextLine
+		$2.EventBraceStyle = NextLine
+		$2.EventAddBraceStyle = NextLine
+		$2.EventRemoveBraceStyle = NextLine
+		$2.StatementBraceStyle = NextLine
+		$2.ElseNewLinePlacement = NewLine
+		$2.CatchNewLinePlacement = NewLine
+		$2.FinallyNewLinePlacement = NewLine
+		$2.WhileNewLinePlacement = DoNotCare
+		$2.ArrayInitializerWrapping = DoNotChange
+		$2.ArrayInitializerBraceStyle = NextLine
+		$2.BeforeMethodDeclarationParentheses = False
+		$2.BeforeMethodCallParentheses = False
+		$2.BeforeConstructorDeclarationParentheses = False
+		$2.NewLineBeforeConstructorInitializerColon = NewLine
+		$2.NewLineAfterConstructorInitializerColon = SameLine
+		$2.BeforeDelegateDeclarationParentheses = False
+		$2.NewParentheses = False
+		$2.SpacesBeforeBrackets = False
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal

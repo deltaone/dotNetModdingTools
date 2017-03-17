@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00000001-F06A-4C79-98F7-D87AEDFD5C2B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>dotNetMT</RootNamespace>
+    <AssemblyName>_mod.core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;INSIDE_ROCKS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;INSIDE_ROCKS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="_mod.core\Helpers.cs" />
+    <Compile Include="_mod.core\IL.cs" />
+    <Compile Include="_mod.core\LogFile.cs" />
+    <Compile Include="_mod.core\DNMT.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\Code.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\CodeReader.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\CodeWriter.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\Document.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\ExceptionHandler.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\ILProcessor.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\Instruction.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\MethodBody.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\OpCode.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\OpCodes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\PortablePdb.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\SequencePoint.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\Symbols.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\VariableDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Cil\VariableReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\BlobHeap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\Buffers.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\CodedIndex.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\ElementType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\GuidHeap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\Heap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\MetadataToken.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\PdbHeap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\Row.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\StringHeap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\TableHeap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\TokenType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\UserStringHeap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Metadata\Utilities.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\BinaryStreamReader.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\BinaryStreamWriter.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\ByteBuffer.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\ByteBufferEqualityComparer.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\DataDirectory.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\Image.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\ImageReader.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\ImageWriter.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\Section.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.PE\TextMap.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\DocCommentId.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\Functional.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\ILParser.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\MethodBodyRocks.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\MethodDefinitionRocks.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\ModuleDefinitionRocks.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\ParameterReferenceRocks.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\SecurityDeclarationRocks.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\TypeDefinitionRocks.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil.Rocks\TypeReferenceRocks.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ArrayType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyFlags.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyHashAlgorithm.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyLinkedResource.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyNameDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyNameReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyReader.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\AssemblyWriter.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\BaseAssemblyResolver.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\CallSite.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\CustomAttribute.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\DefaultAssemblyResolver.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\EmbeddedResource.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\EventAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\EventDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\EventReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ExportedType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\FieldAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\FieldDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\FieldReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\FileAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\FunctionPointerType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\GenericInstanceMethod.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\GenericInstanceType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\GenericParameter.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\GenericParameterAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IConstantProvider.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ICustomAttributeProvider.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IGenericInstance.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IGenericParameterProvider.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IMarshalInfoProvider.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IMemberDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IMetadataScope.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IMetadataTokenProvider.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\IMethodSignature.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\Import.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\LinkedResource.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ManifestResourceAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MarshalInfo.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MemberDefinitionCollection.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MemberReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MetadataResolver.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MetadataSystem.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodCallingConvention.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodImplAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodReturnType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodSemanticsAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\MethodSpecification.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\Modifiers.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ModuleDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ModuleKind.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ModuleReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\NativeType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ParameterAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ParameterDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ParameterDefinitionCollection.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ParameterReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\PinnedType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\PInvokeAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\PInvokeInfo.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\PointerType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\PropertyAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\PropertyDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\PropertyReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\ReferenceType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\Resource.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\SecurityDeclaration.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\SentinelType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TargetRuntime.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\Treatments.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TypeAttributes.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TypeDefinition.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TypeDefinitionCollection.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TypeParser.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TypeReference.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TypeSpecification.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\TypeSystem.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\VariantType.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Cecil\WindowsRuntimeProjections.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Collections.Generic\Collection.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Collections.Generic\ReadOnlyCollection.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Security.Cryptography\CryptoConvert.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono.Security.Cryptography\CryptoService.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono\Disposable.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono\Empty.cs" />
+    <Compile Include="_mod.core\mono.cecil\Mono\Type.cs" />
+    <Compile Include="_mod.core\mono.cecil\System.Security.Cryptography\SHA1Managed.cs" />
+    <Compile Include="_mod.core\PrivateProfile.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
