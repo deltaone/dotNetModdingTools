@@ -15,7 +15,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("Tweak-SoilDecay", "d1", "Add 'Adjust soil decay chance' tweak (changed from 0.10 to 0.001 by default)!")]
+    [PluginTag("Tweak-SoilDecay", "de1ta0ne", @"
+    |Add 'Adjust soil decay chance' tweak (changed from 0.10 to 0.001)!
+    |
+    |Note: can be changed in _mod.core.ini under 'Tweak-SoilDecay' section
+    |")]
+
     public class TweakSoilDecay
     {
         [PluginPatch("Stardew Valley.exe")]

@@ -17,7 +17,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("Tweak-FastGeodes", "d1", "Add 'Fast cracks geode' tweak!")]
+    [PluginTag("Tweak-FastGeodes", "de1ta0ne", @"Add 'Fast open geode' tweak!")]
     public class TweakFastGeodes
     {
         public static List<FarmerSprite.AnimationFrame> Adjust(List<FarmerSprite.AnimationFrame> frames, GeodeMenu menu)

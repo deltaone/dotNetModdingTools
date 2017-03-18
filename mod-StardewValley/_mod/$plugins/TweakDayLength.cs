@@ -15,7 +15,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("Tweak-DayLength", "d1", "Add 'Increased day length' tweak (changed to x2)!")]
+    [PluginTag("Tweak-DayLength", "de1ta0ne", @"
+    |Add 'Increased day length' tweak (changed to x2)!
+    |
+    |Note: can be changed in _mod.core.ini under 'Tweak-DayLength' section
+    |")]
     public class TweakDayLength
     {
         [PluginPatch("Stardew Valley.exe")]

@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
+using System.Linq;
 
 namespace dotNetMT
 {
@@ -16,6 +17,13 @@ namespace dotNetMT
 
         //---------------------------------------------------------------------
         #region String parse
+
+        public static List<string> SplitSafe(this string input, string separator)
+        {
+            return (input.Split(new string[] { separator }, StringSplitOptions.RemoveEmptyEntries).
+                Select(e => e.Trim()).Where(e => e.Length > 0).ToList());
+        }
+
         public static T Parse<T>(this string input, T defaultValue = default(T))
         {   // var i = task["depth"].Parse(7); var i = task["depth"].Parse<int>();
             T result;

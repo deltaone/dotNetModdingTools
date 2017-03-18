@@ -15,22 +15,58 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("ScytheHarvest", "d1", @"Add scythe harvest ...")]
-    public class ScytheHarvest
+    [PluginTag("ScytheHarvest", "de1ta0ne", @"
+    |Add harvest crop with scythe ...
+    |
+    |By default used with these seed id's:
+    |
+	|   499, // Ancient Seeds
+	|   745, // Strawberry Seeds
+	|   478, // Rhubarb Seeds
+	|   481, // Blueberry Seeds
+	|   486, // Starfruit Seeds
+	|   493, // Cranberry Seeds
+	|   490, // Pumpkin Seeds            
+	|   // flowers
+	|   431, // Sunflower Seeds
+	|   427, // Tulip Bulb            
+	|   455, // Spangle Seeds
+	|   425, // Fairy Seeds            
+	|   429, // Jazz Seeds
+	|   453, // Poppy Seeds
+    |
+    |Note: can be changed in _mod.core.ini under 'ScytheHarvest' section
+    |          work only with new planted crops
+    ")]
+    public static class ScytheHarvest
     {
-        private static int[] _useScytheWith = new int[] { 
+        private static int[] _seedsID = new int[] { // _useScytheWith
 			499, // Ancient Seeds
 			745, // Strawberry Seeds
 			478, // Rhubarb Seeds
 			481, // Blueberry Seeds
 			486, // Starfruit Seeds
 			493, // Cranberry Seeds
-			490, // Pumpkin Seeds
+			490, // Pumpkin Seeds            
+            // flowers
+            431, // Sunflower Seeds
+            427, // Tulip Bulb            
+            455, // Spangle Seeds
+            425, // Fairy Seeds            
+            429, // Jazz Seeds
+            453, // Poppy Seeds
         };
+
+        static ScytheHarvest()
+        {
+            string defaultSeedsID = string.Join(",", _seedsID.Select(x => x.ToString()).ToArray());
+            _seedsID = DNMT.Config.Get("ScytheHarvest", "SeedsID", defaultSeedsID, true).SplitSafe(",").Select(x => x.Parse<int>()).ToArray();
+            // _seedsID.ToList().ForEach(x => { DNMT.Log(x.ToString()); });
+        }
 
         public static int AdjustHarvestMethod(int defaultMethod, int seedIndex)
         {
-            if (Array.IndexOf(_useScytheWith, seedIndex) > -1)
+            if (Array.IndexOf(_seedsID, seedIndex) > -1)
                 return (1);
             return (defaultMethod);
         }
@@ -113,7 +149,7 @@ namespace dotNetMT
                     Instruction.Create(OpCodes.Call, callMethod),
                 });
 
-            //---------------------------------------------------------------------------------------------------------
+            // ---
 
             fn = IL.GetMethodDefinition(IL.GetTypeDefinition(module, "Crop"), "harvest");
             spot = IL.ScanForOpcodePattern(fn,
@@ -147,7 +183,7 @@ namespace dotNetMT
                     //Instruction.Create(OpCodes.Stloc_S, fn.Body.Variables[4]),
                 });
             
-            //---------------------------------------------------------------------------------------------------------
+            // ---
         }
     }
 }

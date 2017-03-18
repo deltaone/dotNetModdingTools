@@ -15,10 +15,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("EasyPlant", "d1", @"
+    [PluginTag("EasyPlant", "de1ta0ne", @"
     |Add 'Easy plant' tweak!
-    | 
-    |   Note: work only with new planted crops!")]
+    |
+    |Plant crops/fertilizer by 3x3 square ...
+    |")]
     public class EasyPlant
     {
         public static void ProcessPlant1x1(StardewValley.GameLocation gameLocation, int x, int y, StardewValley.Farmer who)

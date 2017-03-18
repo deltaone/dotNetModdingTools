@@ -15,7 +15,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("Tweak-MovementSpeed", "d1", "Add 'Movement speed multiplier' tweak (default 0.066f / changed to 0.099f)!")]
+    [PluginTag("Tweak-MovementSpeed", "de1ta0ne", @"
+    |Add 'Movement speed multiplier' tweak (default 0.066f / changed to 0.099f)!
+    |
+    |Note: can be changed in _mod.core.ini under 'Tweak-MovementSpeed' section
+    |")]
+
     public class TweakMovementSpeed
     {
         [PluginPatch("Stardew Valley.exe")]

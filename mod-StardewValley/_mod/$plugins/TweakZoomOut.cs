@@ -15,10 +15,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("Tweak-ZoomOut", "d1", @"
-        |   Add 'Zoom out' tweak! (default 0.75 / changed to 0.5)
+    [PluginTag("Tweak-ZoomOut", "de1ta0ne", @"
+        |Add 'Zoom out' tweak! (default 0.75 / changed to 0.5)
         |
-        |   Note: enable screen zoom buttons in options, use these buttons to adjust zoom rate!
+        |Note: can be changed in _mod.core.ini under 'Tweak-ZoomOut' section
+        |          enable screen zoom buttons in options, use these buttons to adjust zoom rate
     ")]
     public class TweakZoomOut
     {
