@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace dotNetMT
 {
-    [PluginTag("ManualSprinklers", "de1ta0ne", @"Add clickable sprinklers ...")]
+    [PluginTag("ManualSprinklers", "Platonymous", @"Add clickable sprinklers ...")]
     public class ManualSprinklers : PluginBase
     {
         public override void OnUpdateControlInput(KeyboardState stateKeyboard, MouseState stateMouse, GamePadState stateGamePad)
