@@ -148,8 +148,8 @@ namespace dotNetMT
             }
 
             spot += 3;
-            var callType = module.Import(typeof(dotNetMT.EventRouter)).Resolve();
-            var callMethod = module.Import(IL.GetMethodDefinition(callType, "OnUpdateControlInput"));
+            var callType = module.ImportReference(typeof(dotNetMT.EventRouter)).Resolve();
+            var callMethod = module.ImportReference(IL.GetMethodDefinition(callType, "OnUpdateControlInput"));
             IL.MethodAppend(fn, spot, 0, new[] {
                     Instruction.Create(OpCodes.Call, callMethod),
                 });

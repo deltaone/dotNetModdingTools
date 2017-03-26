@@ -29,7 +29,7 @@ namespace dotNetMT
                 if (currentLocation.objects.ContainsKey(key) && currentLocation.objects[key].name.Contains("Sprinkler"))
                 {
                     currentLocation.objects[key].DayUpdate(currentLocation);
-                    DelayedAction.playSoundAfterDelay("coin", 260);
+					Game1.playSound("coin");
                 }
             }
         }

@@ -83,8 +83,8 @@ namespace dotNetMT
             }
 
             spot += 4;
-            var callType = module.Import(typeof(dotNetMT.EasyPlant)).Resolve();
-            var callMethod = module.Import(IL.GetMethodDefinition(callType, "ProcessPlant"));
+            var callType = module.ImportReference(typeof(dotNetMT.EasyPlant)).Resolve();
+            var callMethod = module.ImportReference(IL.GetMethodDefinition(callType, "ProcessPlant"));
            
             IL.MethodAppend(fn, spot, 0, new[]
                 {

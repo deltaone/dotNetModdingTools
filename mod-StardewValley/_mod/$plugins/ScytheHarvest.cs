@@ -141,8 +141,8 @@ namespace dotNetMT
             //fn.Body.Instructions[spot + 3].OpCode = OpCodes.Nop;
 
             spot += 2;
-            var callType = module.Import(typeof(dotNetMT.ScytheHarvest)).Resolve();
-            var callMethod = module.Import(IL.GetMethodDefinition(callType, "AdjustHarvestMethod"));
+            var callType = module.ImportReference(typeof(dotNetMT.ScytheHarvest)).Resolve();
+            var callMethod = module.ImportReference(IL.GetMethodDefinition(callType, "AdjustHarvestMethod"));
             IL.MethodAppend(fn, spot, 0, new[]
                 {
                     Instruction.Create(OpCodes.Ldarg_1),
@@ -170,7 +170,7 @@ namespace dotNetMT
             }
 
             spot += 4;
-            callMethod = module.Import(IL.GetMethodDefinition(callType, "ProcessScytheHarvest"));
+            callMethod = module.ImportReference(IL.GetMethodDefinition(callType, "ProcessScytheHarvest"));
             IL.MethodAppend(fn, spot, 0, new[]
                 {
                     Instruction.Create(OpCodes.Ldarg_0),
