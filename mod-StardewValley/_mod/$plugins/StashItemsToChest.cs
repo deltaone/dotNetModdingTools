@@ -65,25 +65,21 @@ namespace dotNetMT
 
             Game1.playSound("coin");
 
-            List<Item> OpenChestItemList = OpenChest.items;
-            foreach (Item playerItem in PlayerInventory)
+            foreach (Item playerItem in PlayerInventory.ToArray())
             {	
 				if (playerItem == null)
 					continue;
 			
-                foreach (Item chestItem in OpenChestItemList)
+                foreach (Item chestItem in OpenChest.items.ToArray())
                 {
 					if (chestItem == null)
 						continue;
-				
+
                     if (playerItem.canStackWith(chestItem))
                     {
-                        if (isChestFull(OpenChest) && (
-                            //chestItem.maximumStackSize() == -1 ||
-                            chestItem.getStack() + playerItem.getStack() > chestItem.maximumStackSize()))
-                        {
+                        if (isChestFull(OpenChest) && chestItem.getStack() + playerItem.getStack() > chestItem.maximumStackSize())
                             continue;
-                        }
+
                         OpenChest.grabItemFromInventory(playerItem, Game1.player);
                         break;
                     }
