@@ -57,7 +57,8 @@ ipch/
 # unredistributable:
 .todo
 .todo-src
-refs/
+.refs/
+.vs/
 mod-StardewValley/xTile.dll
 mod-StardewValley/Stardew Valley.exe
 mod-Terraria/Terraria.exe 

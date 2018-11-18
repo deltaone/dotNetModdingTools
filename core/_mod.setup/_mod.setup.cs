@@ -81,21 +81,15 @@ namespace dotNetMT
         public static readonly string assemblyFolder = Path.GetFullPath(Path.GetDirectoryName(assemblyFile) + Path.DirectorySeparatorChar);
         public static readonly string assemblyStartupFolder = Path.GetFullPath(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar);
 
-        public static readonly string fileIni = Path.Combine(assemblyFolder, "_mod.core.ini");
-
-        public static readonly string modFolder = "_mod";
-        public static readonly string modPluginsFolder = ""; // "$plugins";
         public static readonly string modPluginsFile = "_mod.plugins.dll";
         public static readonly string modCoreFile = "_mod.core.dll";
 
-        public static string modFolderPath = Path.Combine(assemblyFolder, modFolder);
-        public static string modPluginsFolderPath = Path.Combine(modFolderPath, modPluginsFolder);
-        public static string modPluginsFilePath = Path.Combine(modFolderPath, modPluginsFile);
-        public static string modPluginsFilePathBAK = Path.Combine(modFolderPath, modPluginsFile + ".bak");
+        public static string modPluginsFilePath = Path.Combine(DNMT.modRootFolder, modPluginsFile);
+        public static string modPluginsFilePathBAK = Path.Combine(DNMT.modRootFolder, modPluginsFile + ".bak");
         public static string modCoreFilePath = Path.Combine(assemblyFolder, modCoreFile);
 
         public static bool modInstalled = false;
-        public static bool modInjectMode = false;
+        public static bool modQuickSetupMode = false;
         public static int modSetupAction = 0;
 
         public static Dictionary<string, PluginEntry> modPluginList;  
@@ -388,13 +382,13 @@ namespace dotNetMT
         {
             print("[i] rebuild " + modPluginsFilePath.Replace(assemblyFolder, ".\\"));
 
-            if (!Directory.Exists(modPluginsFolderPath))
+            if (!Directory.Exists(DNMT.modPluginsFolder))
             {
                 print("   ERROR: Plugins source folder not found!");
                 return (false);
             }
 
-            var sources = Directory.GetFiles(modPluginsFolderPath, "*.cs", SearchOption.AllDirectories);            
+            var sources = Directory.GetFiles(DNMT.modPluginsFolder, "*.cs", SearchOption.AllDirectories);            
             if (sources.Length == 0)
             {
                 print("   ERROR: Plugins sources not found!");
@@ -402,7 +396,7 @@ namespace dotNetMT
             }
 
             var references = new List<string>();
-            var refs = Directory.GetFiles(modPluginsFolderPath, "*.refs", SearchOption.AllDirectories);
+            var refs = Directory.GetFiles(DNMT.modPluginsFolder, "*.refs", SearchOption.AllDirectories);
             foreach (var r in refs) 
                 references.AddRange(File.ReadAllLines(r));
 
@@ -500,10 +494,16 @@ namespace dotNetMT
 
         static void ModInstall(string installFolder)
         {
-            foreach (var k in modPluginList.Keys) DNMT.Config.Set("plugins", k, modPluginList[k].active);
+            print("[i] installing ...");
+            if (!Directory.Exists(DNMT.modRootFolder))
+            {
+                print("   ERROR: Mod root folder not found!");
+                return;
+            }
 
-            print("[i] copy mod files ...");
-            var toCopy = Directory.GetFiles(modFolderPath, "*", SearchOption.TopDirectoryOnly).ToList();
+            foreach (var k in modPluginList.Keys) DNMT.Config.Set("plugins", k, modPluginList[k].active);
+            
+            var toCopy = Directory.GetFiles(DNMT.modRootFolder, "*", SearchOption.TopDirectoryOnly).ToList();
 
             if (!File.Exists(Path.Combine(installFolder, Path.GetFileName(assemblyFile))))
             {
@@ -527,8 +527,15 @@ namespace dotNetMT
 
         static void ModUninstall(string installFolder)
         {
+            print("[i] uninstalling ...");
+            if (!Directory.Exists(DNMT.modRootFolder))
+            {
+                print("   ERROR: Mod root folder not found!");
+                return;
+            }
+            
             print("[i] update mod .ini files ...");
-            var toCopy = Directory.GetFiles(modFolderPath, "*.ini").ToList();
+            var toCopy = Directory.GetFiles(DNMT.modRootFolder, "*.ini").ToList();
             foreach (var file in toCopy)
             {
                 string file_ = Path.Combine(installFolder, Path.GetFileName(file));
@@ -539,7 +546,7 @@ namespace dotNetMT
             }
 
             print("[i] delete mod files ...");
-            var toDelete = Directory.GetFiles(modFolderPath, "*").ToList();
+            var toDelete = Directory.GetFiles(DNMT.modRootFolder, "*").ToList();
 
             if (!File.Exists(Path.Combine(installFolder, Path.GetFileName(assemblyFile))))
             {
@@ -609,15 +616,16 @@ namespace dotNetMT
                 }                    
             }
 
-            if (modInstalled && !Directory.Exists(modFolderPath)) modInjectMode = true;
+            if (modInstalled && !Directory.Exists(DNMT.modRootFolder)) modQuickSetupMode = true;            
+            //if (modInstalled && Directory.GetFiles(installFolder, "*.bak").ToList().Count == 0) modQuickSetupMode = true;
 
             print("[i] path = " + installFolder);
             print("[i] installed = " + modInstalled.ToString());
-            print("[i] inject mode = " + modInjectMode.ToString());
+            print("[i] quick setup mode = " + modQuickSetupMode.ToString());
 
             do
             {
-                if (modInjectMode)
+                if (modQuickSetupMode)
                 {
                     Directory.SetCurrentDirectory(installFolder);
                     if (!ReadPluginsData(pluginsFile)) break;
@@ -636,8 +644,7 @@ namespace dotNetMT
                 //    break;
                 //}
                 
-                if (!File.Exists(modPluginsFilePath)) break;
-                
+                if (!File.Exists(modPluginsFilePath)) break;                
                 if (!ReadPluginsData(modPluginsFilePath)) break;
 
                 Application.EnableVisualStyles();
@@ -645,15 +652,10 @@ namespace dotNetMT
 
                 if (modSetupAction == 0) print("[i] exitting ...");
                 else if (modSetupAction == 1)
-                {
-                    print("[i] installing ...");
                     ModInstall(installFolder);
-                }
                 else if (modSetupAction == 2)
-                {
-                    print("[i] uninstalling ...");
                     ModUninstall(installFolder);
-                }
+
             } while (false);
            
             print("Done!");

@@ -16,39 +16,29 @@ namespace dotNetMT
     public static class DNMT
     {
         private static readonly string _modFolder = @"_mod";
+        private static readonly string _modPluginsFolder = "$plugins";
 
         public static readonly string assemblyFile = Assembly.GetExecutingAssembly().Location;
         public static readonly string assemblyFolder = Path.GetFullPath(Path.GetDirectoryName(assemblyFile) + Path.DirectorySeparatorChar);
         public static readonly string assemblyStartupFolder = Path.GetFullPath(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar);
         public static readonly string modRootFolder;
+        public static readonly string modPluginsFolder;
 
         public static LogFile Logger = new LogFile(Path.ChangeExtension(assemblyFile, ".log"), true);
         public static PrivateProfile Config = new PrivateProfile(Path.ChangeExtension(assemblyFile, ".ini"));
 
         static DNMT()
         {
-            List<string> paths = new List<string>() 
-            {
-                Config.Get("main", "root", null),
-                Path.GetFullPath(Path.Combine(assemblyFolder, _modFolder) + Path.DirectorySeparatorChar),
-                File.Exists(Path.Combine(assemblyFolder, "UnityEngine.dll")) ? 
-                    Path.GetFullPath(Path.Combine(assemblyFolder, @"..\..\" + _modFolder) + Path.DirectorySeparatorChar) : null,
-                Path.GetFullPath(Path.Combine(assemblyStartupFolder, _modFolder) + Path.DirectorySeparatorChar),
-            };
-
-            foreach (string path in paths)
-            {
-                if (String.IsNullOrEmpty(path) || !Directory.Exists(path)) continue;
-                modRootFolder = path;
-                break;
-            }
-
-            if (modRootFolder == null)
-            {
-                modRootFolder = assemblyFolder;
-                LogWarning("Can't find mod root folder, using '" + assemblyFolder + "'!");
-            }
-           
+            modRootFolder = Path.GetFullPath(
+                Config.Get("main", "root",
+                    Path.Combine(assemblyFolder, File.Exists(Path.Combine(assemblyFolder, "UnityEngine.dll")) ?
+                        @"..\..\" : "") + _modFolder + Path.DirectorySeparatorChar)
+                );
+            modPluginsFolder = Path.Combine(modRootFolder, _modPluginsFolder + Path.DirectorySeparatorChar);
+            
+            if (!Directory.Exists(modRootFolder))
+                LogWarning("Can't find mod root folder '" + modRootFolder + "'!");
+            
             AppDomain.CurrentDomain.ProcessExit += ClassDestructor; // DomainUnload
         }
 
