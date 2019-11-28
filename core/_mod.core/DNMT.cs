@@ -21,6 +21,7 @@ namespace dotNetMT
         public static readonly string assemblyFile = Assembly.GetExecutingAssembly().Location;
         public static readonly string assemblyFolder = Path.GetFullPath(Path.GetDirectoryName(assemblyFile) + Path.DirectorySeparatorChar);
         public static readonly string assemblyStartupFolder = Path.GetFullPath(Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar);
+
         public static readonly string modRootFolder;
         public static readonly string modPluginsFolder;
 
