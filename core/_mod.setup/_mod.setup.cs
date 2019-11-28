@@ -280,13 +280,15 @@ namespace dotNetMT
                     var pta = (PluginTagAttribute)pluginTagAttributes[0];
                     if (pta.pluginName != "")
                     {
-                        var entry = new PluginEntry();
-                        entry.pluginTag = pluginTag;
-                        entry.pluginName = pta.pluginName;
-                        entry.pluginAuthor = pta.pluginAuthor;
-                        entry.pluginNote = pta.pluginNote;
-                        entry.pluginRequired = pta.pluginRequired;
-                        entry.active = true;
+                        var entry = new PluginEntry
+                        {
+                            pluginTag = pluginTag,
+                            pluginName = pta.pluginName,
+                            pluginAuthor = pta.pluginAuthor,
+                            pluginNote = pta.pluginNote,
+                            pluginRequired = pta.pluginRequired,
+                            active = true
+                        };
                         modPluginList[pluginTag] = entry;
                     }                    
                 }
@@ -299,28 +301,32 @@ namespace dotNetMT
                         if (pma.GetType().FullName == "dotNetMT.PluginHookAttribute")
                         {
                             var a = (PluginHookAttribute)pma;
-                            entry = new ModEntry();
-                            entry.entryType = ModEntryType.Hook;
-                            entry.method = method.Name;
-                            entry.type = type.Name;
-                            entry.method_ = method;
-                            entry.type_ = type;
-                            entry.assembly = a.assemblyName;
-                            entry.type2hook = a.typeName;
-                            entry.method2hook = a.methodName;
-                            entry.hookOnBegin = a.hookOnBegin;
-                            entry.parameterCount = a.parameterCount;
+                            entry = new ModEntry
+                            {
+                                entryType = ModEntryType.Hook,
+                                method = method.Name,
+                                type = type.Name,
+                                method_ = method,
+                                type_ = type,
+                                assembly = a.assemblyName,
+                                type2hook = a.typeName,
+                                method2hook = a.methodName,
+                                hookOnBegin = a.hookOnBegin,
+                                parameterCount = a.parameterCount
+                            };
                         }
                         else if (pma.GetType().FullName == "dotNetMT.PluginPatchAttribute")
                         {
                             var a = (PluginPatchAttribute)pma;
-                            entry = new ModEntry();
-                            entry.entryType = ModEntryType.Patch;
-                            entry.method = method.Name;
-                            entry.type = type.Name;
-                            entry.method_ = method;
-                            entry.type_ = type;
-                            entry.assembly = a.assemblyName;
+                            entry = new ModEntry
+                            {
+                                entryType = ModEntryType.Patch,
+                                method = method.Name,
+                                type = type.Name,
+                                method_ = method,
+                                type_ = type,
+                                assembly = a.assemblyName
+                            };
                         }
                         else continue;
                         
@@ -378,20 +384,20 @@ namespace dotNetMT
             }
         }
 
-        static bool BuildModPlugins()
+        static bool BuildPlugins(List<string> log)
         {
-            print("[i] rebuild " + modPluginsFilePath.Replace(assemblyFolder, ".\\"));
+            log.Add("[i] rebuild " + modPluginsFilePath.Replace(assemblyFolder, ".\\"));
 
             if (!Directory.Exists(DNMT.modPluginsFolder))
             {
-                print("   ERROR: Plugins source folder not found!");
+                log.Add("[e] Plugins source folder not found!");
                 return (false);
             }
 
             var sources = Directory.GetFiles(DNMT.modPluginsFolder, "*.cs", SearchOption.AllDirectories);            
             if (sources.Length == 0)
             {
-                print("   ERROR: Plugins sources not found!");
+                log.Add("[e] Plugins sources not found!");
                 return (false);
             }
 
@@ -416,9 +422,9 @@ namespace dotNetMT
                 {
                     assembly = Assembly.ReflectionOnlyLoad(File.ReadAllBytes(file));
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
-                    print("   WARNING: Can't load assembly for extracting refs - " + ex.Message);
+                    log.Add("[w] Can't load assembly for extracting refs - " + ex.Message);
                     continue;
                 }
                 AssemblyName[] assemblies = assembly.GetReferencedAssemblies();
@@ -457,20 +463,22 @@ namespace dotNetMT
             references = noDupes.Select(x => x.Value.Length > 0 ? x.Value + Path.DirectorySeparatorChar + x.Key : x.Key).ToList();
 
             if (references.Count == 0)
-                print("   WARNING: Plugins reference list is empty!");
+                log.Add("[w] Plugins reference list is empty!");
 
             if (File.Exists(modPluginsFilePath))
             {
                 File.Delete(modPluginsFilePathBAK);
                 File.Move(modPluginsFilePath, modPluginsFilePathBAK);
             }
-           
-            var compilerParams = new CompilerParameters();
-            compilerParams.OutputAssembly = modPluginsFilePath;
-            compilerParams.GenerateInMemory = false;
-            compilerParams.GenerateExecutable = false;
-            compilerParams.TreatWarningsAsErrors = false;
-            compilerParams.CompilerOptions = "/optimize /nostdlib+ /utf8output /platform:x86 /nowarn:1701,1702"; // /langversion:5
+
+            var compilerParams = new CompilerParameters
+            {
+                OutputAssembly = modPluginsFilePath,
+                GenerateInMemory = false,
+                GenerateExecutable = false,
+                TreatWarningsAsErrors = false,
+                CompilerOptions = "/optimize /nostdlib+ /utf8output /platform:x86 /nowarn:1701,1702" // /langversion:5
+            };
             compilerParams.ReferencedAssemblies.AddRange(references.ToArray());
 
             var provider = new CSharpCodeProvider();  // new Dictionary<string, string> { { "CompilerVersion", "v3.5" } }
@@ -478,8 +486,8 @@ namespace dotNetMT
                         
             if (compile.Errors.HasErrors)
             {
-                print("[e] Compile error:");
-                foreach (CompilerError ce in compile.Errors) print("   " + ce);
+                log.Add("[e] Compile errors:");
+                foreach (CompilerError ce in compile.Errors) log.Add("[e]   " + ce);
             }
 
             if (File.Exists(modPluginsFilePath))
@@ -592,7 +600,7 @@ namespace dotNetMT
             if (installFolder == null || !Directory.Exists(installFolder))
             {
                 installFolder = assemblyFolder;
-                foreach (var folder in Directory.GetDirectories(installFolder, "*_data"))
+                foreach (string folder in Directory.GetDirectories(installFolder, "*_data"))
                     if (Directory.Exists(Path.Combine(folder, "managed")))
                     {
                         installFolder = Path.Combine(folder, "managed");
@@ -633,17 +641,11 @@ namespace dotNetMT
                     break;
                 }
 
-                BuildModPlugins();
-                //try
-                //{
-                //    BuildModPlugins();
-                //}
-                //catch (System.Exception ex)
-                //{
-                //    print("[ERROR] " + ex.Message + "\n" + ex.StackTrace);
-                //    break;
-                //}
-                
+                List<string> log = new List<string>();
+                BuildPlugins(log);
+                foreach (string s in log)
+                    print(s);
+
                 if (!File.Exists(modPluginsFilePath)) break;                
                 if (!ReadPluginsData(modPluginsFilePath)) break;
 
